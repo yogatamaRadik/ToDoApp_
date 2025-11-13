@@ -136,8 +136,6 @@
                                 <form action="{{ route('delete-task', $task->id) }}" method="POST"
                                     onsubmit="return confirm('Yakin hapus tugas ini?')">
                                     @csrf
-                                    @method('DELETE')
-                                    <button class="btn btn-sm btn-danger">Hapus</button>
                                 </form>
                             </div>
                         </li>
