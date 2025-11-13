@@ -1,25 +1,30 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TodoController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
+| Semua rute aplikasi ToDo kamu terdaftar di sini.
+| Rute "/" langsung diarahkan ke halaman utama ToDo (index).
 |
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-
-Route::get('/home', function () {
     return view('home');
 });
 
-Route::get('/', [HomeController::Class, 'index']);
+// Halaman utama ToDo
+Route::get('/', [TodoController::class, 'index'])->name('home');
+
+// Tambah tugas
+Route::post('/add-task', [TodoController::class, 'store'])->name('add-task');
+
+// Update status tugas (jika nanti kamu tambahkan fitur update)
+Route::patch('/update-task/{id}', [TodoController::class, 'update'])->name('update-task');
+
+// Hapus tugas
+Route::delete('/delete-task/{id}', [TodoController::class, 'destroy'])->name('delete-task');
